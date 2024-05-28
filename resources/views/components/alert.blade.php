@@ -1,6 +1,9 @@
 
 <script src="{{ asset('assets/js/plugins/sweetalert.min.js') }}"></script>
 
+@push('scripts')
+
+@endpush
 @if(session('errors'))
 @php
     $error = $errors->all();
@@ -21,3 +24,4 @@
         })
     </script>
 @endif
+
