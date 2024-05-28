@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -29,6 +30,22 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    /**
+     * Custom error messages for validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Email diperlukan.',
+            'email.email' => 'Email harus valid.',
+            'password.required' => 'Kata sandi diperlukan.',
+            'password.string' => 'Kata sandi harus berupa string.',
+        ];
+    }
+
+
     public function login(): void
     {
         if (!Auth::attempt($this->only('email', 'password'))) {
@@ -39,15 +56,6 @@ class LoginRequest extends FormRequest
         }
 
         $this->session()->regenerate();
-    }
-
-    public function logout(): void
-    {
-        Auth::guard('web')->logout();
-
-        $this->session()->invalidate();
-        $this->session()->regenerateToken();
-
     }
 }
 
