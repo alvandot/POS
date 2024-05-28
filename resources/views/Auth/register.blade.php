@@ -61,20 +61,20 @@
                             <form role="form" method="post" action="{{ route('register') }}" class="text-start">
                                 @csrf
                                 <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Nama</label>
-                                    <input type="text" class="form-control" name="name">
+                                    <x-label>{{__('Nama')}}</x-label>
+                                    <x-form-input type="text" name="name" />
                                 </div>
                                 <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Email</label>
-                                    <input type="text" class="form-control" name="email">
+                                    <x-label>{{__('Email')}}</x-label>
+                                    <x-form-input type="text" name="email" />
                                 </div>
                                 <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Kata Sandi</label>
-                                    <input type="password" class="form-control" name="password">
+                                    <x-label>{{__('Kata Sandi')}}</x-label>
+                                    <x-form-input type="password" name="password" />
                                 </div>
                                 <p class="text-sm mt-3 mb-0">Sudah punya akun? <a href="{{ route('login_page') }}" class="text-dark font-weight-bolder">Masuk</a></p>
                                 <div class="text-center">
-                                    <button type="submit" class="btn bg-gradient-info shadow-info w-100 my-4 mb-2">Daftar</button>
+                                    <x-button type="submit">{{__('Daftar')}}</x-button>
                                 </div>
 
                             </form>
