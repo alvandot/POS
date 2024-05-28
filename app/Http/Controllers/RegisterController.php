@@ -27,6 +27,6 @@ class RegisterController extends Controller
 
         event(new Registered($user));
 
-        return redirect()->route('register_page')->with('success', 'Akun berhasil dibuat. Silahkan masuk menggunakan email dan password yang sudah dibuat.');
+        return redirect()->route('login_page')->with('success', 'Akun berhasil dibuat. Silahkan masuk menggunakan email dan password yang sudah dibuat.');
     }
 }

@@ -1,7 +1,7 @@
 
 <script src="{{ asset('assets/js/plugins/sweetalert.min.js') }}"></script>
 
-@if($errors->any())
+@if(session('errors'))
 @php
     $error = $errors->all();
 @endphp
@@ -12,12 +12,12 @@
             text: '{{$error[0]}}'
         })
     </script>
-@elseif (isset($success))
+@elseif(session('success'))
     <script type="text/javascript">
         swal.fire({
             icon: "success",
             title: 'Success',
-            text: '{{$success}}'
+            text: '{{ session('success') }}'
         })
     </script>
 @endif
