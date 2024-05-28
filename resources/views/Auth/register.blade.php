@@ -37,12 +37,33 @@
                     <div class="card z-index-0 fadeIn3 fadeInBottom">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-info shadow-info border-radius-lg py-3 pe-1">
-                                <h4 class="text-white font-weight-bolder text-center  mb-0">Masuk</h4>
+                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Register with</h4>
+                                <div class="row mt-3">
+                                    <div class="col-2 text-center ms-auto">
+                                        <a class="btn btn-link px-3" href="javascript:;">
+                                            <i class="fa fa-facebook text-white text-lg"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-2 text-center px-1">
+                                        <a class="btn btn-link px-3" href="javascript:;">
+                                            <i class="fa fa-github text-white text-lg"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-2 text-center px-1 me-auto">
+                                        <a class="btn btn-link px-3" href="javascript:;">
+                                            <i class="fa fa-google text-white text-lg"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form role="form" method="post" action="{{ route('login') }}" class="text-start">
+                            <form role="form" method="post" action="{{ route('register') }}" class="text-start">
                                 @csrf
+                                <div class="input-group input-group-outline my-3">
+                                    <label class="form-label">Nama</label>
+                                    <input type="text" class="form-control" name="name">
+                                </div>
                                 <div class="input-group input-group-outline my-3">
                                     <label class="form-label">Email</label>
                                     <input type="text" class="form-control" name="email">
@@ -51,9 +72,9 @@
                                     <label class="form-label">Kata Sandi</label>
                                     <input type="password" class="form-control" name="password">
                                 </div>
-
+                                <p class="text-sm mt-3 mb-0">Sudah punya akun? <a href="{{ route('login_page') }}" class="text-dark font-weight-bolder">Masuk</a></p>
                                 <div class="text-center">
-                                    <button type="submit" class="btn bg-gradient-info shadow-info w-100 my-4 mb-2">Masuk</button>
+                                    <button type="submit" class="btn bg-gradient-info shadow-info w-100 my-4 mb-2">Daftar</button>
                                 </div>
 
                             </form>
@@ -84,7 +105,7 @@
 
 <script src="{{ asset('assets/js/plugins/sweetalert.min.js') }}"></script>
 
-@if($errors->any())
+@if(session('errors'))
 @php
     $error = $errors->all();
 @endphp
@@ -93,6 +114,14 @@
             icon: "error",
             title: 'Error',
             text: '{{$error[0]}}'
+        })
+    </script>
+@elseif(session('success'))
+    <script type="text/javascript">
+        swal.fire({
+            icon: "success",
+            title: 'Success',
+            text: '{{ session('success') }}'
         })
     </script>
 @endif
