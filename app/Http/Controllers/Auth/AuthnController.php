@@ -13,6 +13,7 @@ class AuthnController extends Controller
 {
     public function index()
     {
+
         return view('Auth.login');
     }
 
@@ -20,7 +21,8 @@ class AuthnController extends Controller
     {
         $request->login();
 
-        return json_encode(['message' => 'Login Berhasil']);
+        // dd(Auth::user());
+        return redirect()->route('dashboard');
     }
 
     public function register(RegisterRequest $request)
@@ -32,7 +34,7 @@ class AuthnController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::guard('web')->logout();
+        Auth::logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
